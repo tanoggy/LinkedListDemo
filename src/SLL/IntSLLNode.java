@@ -76,7 +76,7 @@ class IntSLL
         IntSLLNode temp = head;
         while(temp != null)
         {
-            System.out.println(temp.info);
+            System.out.print(temp.info +  " ,");
             temp = temp.next;
         }
     }
@@ -138,11 +138,22 @@ class IntSLL
        return temp.info;
     }
 
-  /*  public IntSLLNode getNode(int position) throws IndexOutOfBoundsException
+   public IntSLLNode getNode(int position) throws IndexOutOfBoundsException
     {
+        if(position > size - 1 || position < 0)
+        {
+            throw new IndexOutOfBoundsException();
+        }
 
+        IntSLLNode temp = head;
+        for (int i = 0; i < position; i++) {
+            temp = temp.next;
+
+        }
+
+        return temp;
     }
-*/
+
 
 
     public void Add(int el, int position) throws IndexOutOfBoundsException
@@ -204,17 +215,45 @@ class IntSLL
 
     public int RemoveAt(int position) throws IndexOutOfBoundsException
     {
+
         return 0;
     }
 
     public void reverse() // require take in place
     {
+        IntSLLNode pre = null;
+        IntSLLNode current = head;
+        IntSLLNode next = null;
+
+        while(current != null)
+        {
+          next = current.next;
+          current.next = pre;
+          pre = current;
+          current = next;
+        }
+
+        head = pre;
 
     }
 
-    public void sort() // require take in place
+    public void sort() throws Exception// require take in place
     {
+        for (int i = 0; i < size; i++) {
+            IntSLLNode current = head;
+            IntSLLNode next = head.next;
+            for (int j = 0; j < size - 1; j++) {
+                if (current.info > next.info)
+                {
+                    int temp = current.info;
+                    current.info = next.info;
+                    next.info = temp;
+                }
+                current = next;
+                next = current.next;
+            }
 
+        }
     }
 }
 
@@ -225,6 +264,12 @@ class Test
 
         for(int i = 2; i < 10; i++)
             sll.AddFirst(i);
+
+
+        sll.traverse();
+        System.out.println("remove");
+
+
         sll.traverse();
 
 /*        System.out.println("after delete " + sll.RemoveFirst());
@@ -232,7 +277,7 @@ class Test
 
         System.out.println("Afer delete " +  sll.RemoveLast());
         sll.traverse();*/
-        System.out.println("get Data from element 6 of list: " + sll.get(6));
+      //  System.out.println("get Data from element 6 of list: " + sll.get(6));
 
 
     }}
