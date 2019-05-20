@@ -269,7 +269,6 @@ class Test
         sll.traverse();
         System.out.println("remove");
 
-
         sll.traverse();
 
 /*        System.out.println("after delete " + sll.RemoveFirst());
