@@ -1,5 +1,7 @@
 package SLL;
+
 import java.util.*;
+
 
 
 
@@ -122,8 +124,18 @@ class IntSLL
 
     public int get(int position) throws IndexOutOfBoundsException
     {
+        if(position > size - 1 || position < 0)
+        {
+            throw new IndexOutOfBoundsException();
+        }
 
-       return 0;
+        IntSLLNode temp = head;
+        for (int i = 0; i < position; i++) {
+                temp = temp.next;
+
+        }
+
+       return temp.info;
     }
 
   /*  public IntSLLNode getNode(int position) throws IndexOutOfBoundsException
@@ -140,7 +152,7 @@ class IntSLL
     }
 
     public int RemoveFirst() throws Exception
-    {   int temp = 0;
+    {   int temp;
         if(isEmpty())
         {
             throw new Exception("Empty list");
@@ -162,16 +174,32 @@ class IntSLL
     }
 
     public int RemoveLast() throws Exception
-    {   int temp = -1;
+    {
+
         if(isEmpty())
         {
             throw new Exception("Empty list");
         }
         else {
+           if (head.next == null)
+           {
+               throw new Exception("Empty list");
+           }
 
+            IntSLLNode preLast = head;
+           while (preLast.next.next != null)
+           {
+               preLast = preLast.next;
+
+           }
+           preLast.next = null;
+
+            size--;
         }
 
-        return temp;
+
+
+        return tail.info;
     }
 
     public int RemoveAt(int position) throws IndexOutOfBoundsException
@@ -195,15 +223,16 @@ class Test
     public static void main(String[] args) throws Exception {
         IntSLL sll = new IntSLL();
 
-        for(int i = 0; i < 10; i++)
+        for(int i = 2; i < 10; i++)
             sll.AddFirst(i);
         sll.traverse();
-        int resultDelFirst = sll.RemoveFirst();
-        System.out.println("after delete " + resultDelFirst);
+
+/*        System.out.println("after delete " + sll.RemoveFirst());
         sll.traverse();
-        int resultDelLast = sll.RemoveLast();
-        System.out.println("Afer delete " + resultDelLast);
-        sll.traverse();
+
+        System.out.println("Afer delete " +  sll.RemoveLast());
+        sll.traverse();*/
+        System.out.println("get Data from element 6 of list: " + sll.get(6));
 
 
     }}
