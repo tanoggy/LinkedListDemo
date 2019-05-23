@@ -140,12 +140,20 @@ class IntSLL
 
    public IntSLLNode getNode(int position) throws IndexOutOfBoundsException
     {
+        if(isEmpty())
+        {
+            throw  new IndexOutOfBoundsException();
+        }
+
         if(position > size - 1 || position < 0)
         {
             throw new IndexOutOfBoundsException();
         }
 
+
+
         IntSLLNode temp = head;
+
         for (int i = 0; i < position; i++) {
             temp = temp.next;
 
@@ -158,6 +166,12 @@ class IntSLL
 
     public void Add(int el, int position) throws IndexOutOfBoundsException
     {
+        if(position > size - 1 || position < 0)
+        {
+            throw new IndexOutOfBoundsException();
+        }
+
+
 
 
     }
@@ -252,7 +266,6 @@ class IntSLL
                 current = next;
                 next = current.next;
             }
-
         }
     }
 }
@@ -262,13 +275,16 @@ class Test
     public static void main(String[] args) throws Exception {
         IntSLL sll = new IntSLL();
 
-        for(int i = 2; i < 10; i++)
+        for(int i = 2; i < 20; i++)
+        {
             sll.AddFirst(i);
+            i++;
+        }
 
 
         sll.traverse();
-        System.out.println("remove");
-
+        System.out.println("");
+        sll.sort();
         sll.traverse();
 
 /*        System.out.println("after delete " + sll.RemoveFirst());
