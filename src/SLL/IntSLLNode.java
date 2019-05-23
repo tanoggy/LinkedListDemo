@@ -140,10 +140,6 @@ class IntSLL
 
    public IntSLLNode getNode(int position) throws IndexOutOfBoundsException
     {
-        if(isEmpty())
-        {
-            throw  new IndexOutOfBoundsException();
-        }
 
         if(position > size - 1 || position < 0)
         {
@@ -256,15 +252,15 @@ class IntSLL
         for (int i = 0; i < size; i++) {
             IntSLLNode current = head;
             IntSLLNode next = head.next;
-            for (int j = 0; j < size - 1; j++) {
+            for (int j = 0; j < size - i - 1; j++) {
                 if (current.info > next.info)
                 {
                     int temp = current.info;
                     current.info = next.info;
                     next.info = temp;
                 }
-                current = next;
-                next = current.next;
+                current = current.next;
+                next = next.next;
             }
         }
     }
